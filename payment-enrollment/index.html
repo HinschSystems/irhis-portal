@@ -1,10 +1,492 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Payment Enrollment | IRHIS Tenant Portal</title>
-  </head>
-  <body>
-    <h1>Payment Enrollment Placeholder</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space">
+<title>Set Up Online Rent Payment — I Rent Houses In Sweats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 16px;
+color: #3a3a3a;
+background: #f5f5f3;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+:root {
+--navy:   #0b2c3d;
+--salmon: #C4775A;
+--cream:  #E8EEED;
+--white:  #ffffff;
+--text:   #3a3a3a;
+--mid:    #6b7280;
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero {
+background: var(--navy);
+padding: 52px 48px 48px;
+}
+.hero__inner {
+max-width: 760px;
+margin: 0 auto;
+}
+.hero__eyebrow {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(--salmon);
+margin-bottom: 14px;
+}
+.hero__title {
+font-size: clamp(24px, 3.2vw, 36px);
+font-weight: 800;
+color: #fff;
+line-height: 1.1;
+margin-bottom: 14px;
+}
+.hero__sub {
+font-size: 15px;
+color: rgba(255,255,255,0.58);
+line-height: 1.75;
+max-width: 520px;
+}
+
+/* ── CONTEXT STRIP ───────────────────────────────────────────── */
+.context {
+background: var(--salmon);
+padding: 18px 48px;
+}
+.context__inner {
+max-width: 760px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+gap: 14px;
+}
+.context__icon {
+flex-shrink: 0;
+}
+.context__text {
+font-size: 14px;
+font-weight: 700;
+color: #fff;
+line-height: 1.5;
+}
+.context__text span {
+font-weight: 400;
+color: rgba(255,255,255,0.82);
+}
+
+/* ── MAIN ─────────────────────────────────────────────────────── */
+.main {
+max-width: 760px;
+margin: 0 auto;
+padding: 36px 48px 72px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+/* ── CARDS ───────────────────────────────────────────────────── */
+.card {
+background: var(--white);
+border-radius: 6px;
+border: 1px solid rgba(11,44,61,0.09);
+overflow: hidden;
+}
+.card__header {
+padding: 20px 28px 18px;
+border-bottom: 1px solid rgba(11,44,61,0.07);
+display: flex;
+align-items: center;
+gap: 14px;
+}
+.card__icon {
+width: 36px;
+height: 36px;
+border-radius: 6px;
+background: rgba(196,119,90,0.10);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.card__title {
+font-size: 14px;
+font-weight: 800;
+color: var(--navy);
+text-transform: uppercase;
+letter-spacing: 0.08em;
+line-height: 1;
+margin-bottom: 3px;
+}
+.card__subtitle {
+font-size: 12px;
+color: var(--mid);
+font-weight: 600;
+}
+.card__body {
+padding: 28px 28px 32px;
+}
+
+/* ── PAYMENT CARD ────────────────────────────────────────────── */
+.payment__intro {
+font-size: 15px;
+color: var(--mid);
+line-height: 1.8;
+margin-bottom: 28px;
+}
+.payment__intro strong { color: var(--navy); font-weight: 700; }
+
+/* Why set it up — 3 quick reasons */
+.reasons {
+display: flex;
+gap: 8px;
+margin-bottom: 22px;
+flex-wrap: wrap;
+}
+.reason {
+display: flex;
+align-items: center;
+gap: 7px;
+background: var(--cream);
+border-radius: 20px;
+padding: 7px 14px 7px 10px;
+}
+.reason__icon { display: flex; align-items: center; flex-shrink: 0; }
+.reason__title {
+font-size: 12px;
+font-weight: 800;
+color: var(--navy);
+letter-spacing: 0.04em;
+}
+.reason__body { display: none; }
+
+/* Options */
+.payment__options {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-bottom: 24px;
+}
+.payment__option {
+border: 1.5px solid rgba(11,44,61,0.12);
+border-radius: 5px;
+padding: 18px 20px;
+display: flex;
+align-items: flex-start;
+gap: 16px;
+cursor: pointer;
+transition: border-color .2s, background .2s;
+position: relative;
+}
+.payment__option:hover {
+border-color: var(--salmon);
+background: rgba(196,119,90,0.03);
+}
+.payment__option.selected {
+border-color: var(--salmon);
+background: rgba(196,119,90,0.05);
+}
+.payment__option input[type="radio"] {
+margin-top: 3px;
+accent-color: var(--salmon);
+flex-shrink: 0;
+width: 16px;
+height: 16px;
+}
+.payment__option-title {
+font-size: 14px;
+font-weight: 800;
+color: var(--navy);
+margin-bottom: 3px;
+}
+.payment__option-desc {
+font-size: 13px;
+color: var(--mid);
+line-height: 1.6;
+}
+.payment__badge {
+position: absolute;
+top: 14px;
+right: 16px;
+background: var(--salmon);
+color: #fff;
+font-size: 9px;
+font-weight: 800;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+padding: 3px 9px;
+border-radius: 20px;
+}
+
+.btn-pay {
+display: block;
+width: 100%;
+text-align: center;
+background: var(--salmon);
+color: #fff;
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 13px;
+font-weight: 800;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+padding: 18px;
+border-radius: 4px;
+border: none;
+cursor: pointer;
+transition: background .2s, transform .15s;
+}
+.btn-pay:hover { background: #b36848; transform: translateY(-1px); }
+
+.payment__note {
+font-size: 12px;
+color: var(--mid);
+text-align: center;
+margin-top: 12px;
+line-height: 1.6;
+}
+.payment__note a { color: var(--salmon); font-weight: 700; }
+
+/* ── CONTACTS CARD ───────────────────────────────────────────── */
+.contacts {
+display: flex;
+flex-direction: column;
+}
+.contact {
+display: grid;
+grid-template-columns: 48px 1fr auto;
+gap: 0 16px;
+align-items: center;
+padding: 16px 0;
+border-bottom: 1px solid rgba(11,44,61,0.06);
+}
+.contact:last-child { border-bottom: none; padding-bottom: 0; }
+.contact__avatar {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+overflow: hidden;
+background: var(--cream);
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.contact__avatar img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center top;
+}
+.contact__avatar-initials {
+font-size: 15px;
+font-weight: 800;
+color: var(--navy);
+}
+.contact__name {
+font-size: 14px;
+font-weight: 800;
+color: var(--navy);
+margin-bottom: 2px;
+}
+.contact__role {
+font-size: 12px;
+color: var(--mid);
+}
+.contact__links {
+display: flex;
+flex-direction: column;
+gap: 4px;
+align-items: flex-end;
+}
+.contact__link {
+font-size: 13px;
+font-weight: 700;
+color: var(--salmon);
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.footer-note {
+text-align: center;
+font-size: 13px;
+color: var(--mid);
+line-height: 1.7;
+padding-top: 4px;
+}
+.footer-note strong { color: var(--navy); }
+
+/* ── RESPONSIVE: 768px ───────────────────────────────────────── */
+@media (max-width: 768px) {
+.hero { padding: 40px 24px 36px; }
+.context { padding: 16px 24px; }
+.main { padding: 28px 24px 56px; gap: 16px; }
+.card__header { padding: 16px 20px 14px; }
+.card__body { padding: 20px 20px 24px; }
+.contact { grid-template-columns: 44px 1fr; gap: 0 12px; }
+.contact__links { display: none; }
+}
+
+/* ── RESPONSIVE: 480px ───────────────────────────────────────── */
+@media (max-width: 480px) {
+.hero { padding: 32px 16px 28px; }
+.context { padding: 14px 16px; }
+.main { padding: 20px 16px 48px; gap: 14px; }
+.card__header { padding: 14px 16px 12px; }
+.card__body { padding: 16px 16px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero__inner">
+<p class="hero__eyebrow">I Rent Houses In Sweats · Tenant Portal</p>
+<h1 class="hero__title">One Thing Left To Set Up.</h1>
+<p class="hero__sub">Online rent payment is now available for all IRHIS tenants. Takes two minutes — no more worrying about due dates.</p>
+</div>
+</div>
+
+<!-- CONTEXT STRIP -->
+<div class="context">
+<div class="context__inner">
+<svg class="context__icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+<circle cx="9" cy="9" r="7" stroke="rgba(255,255,255,0.7)" stroke-width="1.4"/>
+<line x1="9" y1="6" x2="9" y2="9.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="9" cy="12" r="0.8" fill="#fff"/>
+</svg>
+<p class="context__text">Rent is due the <strong>1st of each month</strong> with a 5-day grace period. <span>Setting up online payment means you're covered automatically — no manual transfers, no late fees.</span></p>
+</div>
+</div>
+
+<div class="main">
+
+<!-- PAYMENT ENROLLMENT -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<rect x="2" y="4" width="14" height="10" rx="1.5" stroke="#C4775A" stroke-width="1.5"/>
+<line x1="2" y1="7.5" x2="16" y2="7.5" stroke="#C4775A" stroke-width="1.3"/>
+<rect x="4.5" y="10" width="4" height="1.5" rx="0.75" fill="#C4775A"/>
+</svg>
+</div>
+<div>
+<p class="card__title">Set Up Online Rent Payment</p>
+<p class="card__subtitle">Secure · Stripe-powered · Takes 2 minutes</p>
+</div>
+</div>
+<div class="card__body">
+<p class="payment__intro">We've moved to <strong>online rent collection through Stripe</strong> — it's fast, secure, and gives you a full payment history. Choose how you want to pay:</p>
+
+<div class="reasons">
+<div class="reason">
+<div class="reason__icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 3.5" stroke="#C4775A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<p class="reason__title">Never Late</p>
+</div>
+<div class="reason">
+<div class="reason__icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3.5" width="11" height="7.5" rx="1.2" stroke="#C4775A" stroke-width="1.5"/><line x1="1.5" y1="6" x2="12.5" y2="6" stroke="#C4775A" stroke-width="1.2"/><rect x="3" y="7.5" width="3" height="1.2" rx="0.6" fill="#C4775A"/></svg></div>
+<p class="reason__title">Full Payment History</p>
+</div>
+<div class="reason">
+<div class="reason__icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2.5 3.5V7C2.5 9.5 4.5 11.8 7 12.5C9.5 11.8 11.5 9.5 11.5 7V3.5L7 1.5Z" stroke="#C4775A" stroke-width="1.4" stroke-linejoin="round"/><polyline points="5,7 6.5,8.5 9.5,5.5" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<p class="reason__title">Stripe Encrypted</p>
+</div>
+</div>
+
+<div class="payment__options">
+<label class="payment__option selected" id="opt-autopay">
+<input type="radio" name="paytype" value="autopay" checked onchange="selectOption('opt-autopay')">
+<div>
+<p class="payment__option-title">Autopay — Set It and Forget It</p>
+<p class="payment__option-desc">Your rent is automatically charged on the 1st of each month. You'll get a receipt by email every time.</p>
+</div>
+<span class="payment__badge">Recommended</span>
+</label>
+<label class="payment__option" id="opt-manual">
+<input type="radio" name="paytype" value="manual" onchange="selectOption('opt-manual')">
+<div>
+<p class="payment__option-title">Manual — Pay Each Month</p>
+<p class="payment__option-desc">Log in and pay each month yourself. You'll get a reminder a few days before rent is due.</p>
+</div>
+</label>
+</div>
+
+<a href="[STRIPE_PAYMENT_LINK_PLACEHOLDER]" class="btn-pay" target="_blank" rel="noopener">Set Up Payment Now →</a>
+<p class="payment__note">Secured by Stripe. Questions about setup? <a href="tel:4199027728">Text Neela directly</a> and she'll walk you through it.</p>
+</div>
+</div>
+
+<!-- KEY CONTACTS -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<path d="M3 4.5C3 3.7 3.7 3 4.5 3H7L8.5 6.5L6.5 7.5C7.3 9.1 8.9 10.7 10.5 11.5L11.5 9.5L15 11V13.5C15 14.3 14.3 15 13.5 15C7.7 15 3 10.3 3 4.5Z" stroke="#C4775A" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
+</div>
+<div>
+<p class="card__title">Need Help?</p>
+<p class="card__subtitle">Reach out directly</p>
+</div>
+</div>
+<div class="card__body">
+<div class="contacts">
+<div class="contact">
+<div class="contact__avatar">
+<img
+src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/e2fded25-85b0-41a8-a566-350fcb79ad69.png"
+alt="Neela Kelly"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'contact__avatar-initials\'>NK</span>'">
+</div>
+<div>
+<p class="contact__name">Neela Kelly</p>
+<p class="contact__role">Payment questions, lease, anything else</p>
+</div>
+<div class="contact__links">
+<a href="tel:4199027728" class="contact__link">(419) 902-7728</a>
+<a href="mailto:nkelly7x@gmail.com" class="contact__link">nkelly7x@gmail.com</a>
+</div>
+</div>
+<div class="contact">
+<div class="contact__avatar">
+<span class="contact__avatar-initials">M</span>
+</div>
+<div>
+<p class="contact__name">Maintenance</p>
+<p class="contact__role">Non-emergency repairs &amp; requests</p>
+</div>
+<div class="contact__links">
+<a href="tel:[MAINTENANCE_NUMBER]" class="contact__link">[PLACEHOLDER]</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<p class="footer-note">I Rent Houses In Sweats · Toledo, OH · <strong>(419) 902-7728</strong></p>
+
+</div>
+
+<script>
+function selectOption(id) {
+document.querySelectorAll('.payment__option').forEach(function(el) {
+el.classList.remove('selected');
+});
+document.getElementById(id).classList.add('selected');
+}
+</script>
+
+</body>
 </html>
