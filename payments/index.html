@@ -1,10 +1,664 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Payments | IRHIS Tenant Portal</title>
-  </head>
-  <body>
-    <h1>Payments Placeholder</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space">
+<title>Rent Payment Setup — I Rent Houses In Sweats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 16px;
+color: #3a3a3a;
+background: #eceae6;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+:root {
+--navy:   #0b2c3d;
+--salmon: #C4775A;
+--cream:  #E8EEED;
+--white:  #ffffff;
+--text:   #3a3a3a;
+--mid:    #6b7280;
+--bg:     #eceae6;
+--panel:  #f8f7f5;
+}
+
+/* ── TOP BAR ─────────────────────────────────────────────────── */
+.topbar {
+background: var(--navy);
+padding: 0 40px;
+height: 52px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.topbar__left {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.topbar__logo {
+height: 28px;
+width: auto;
+}
+.topbar__divider {
+width: 1px;
+height: 18px;
+background: rgba(255,255,255,0.15);
+}
+.topbar__label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.45);
+}
+.topbar__status {
+display: flex;
+align-items: center;
+gap: 7px;
+font-size: 11px;
+font-weight: 700;
+color: rgba(255,255,255,0.45);
+letter-spacing: 0.08em;
+}
+.topbar__dot {
+width: 7px;
+height: 7px;
+border-radius: 50%;
+background: #f59e0b;
+}
+.topbar__dot.pending { background: #f59e0b; }
+
+/* ── TENANT HEADER ───────────────────────────────────────────── */
+.tenant-header {
+background: var(--navy);
+border-bottom: 1px solid rgba(255,255,255,0.06);
+padding: 28px 40px 0;
+}
+.tenant-header__inner {
+max-width: 900px;
+margin: 0 auto;
+}
+.tenant-meta {
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+padding-bottom: 24px;
+}
+.tenant-meta__left {}
+.tenant-greeting {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.35);
+margin-bottom: 6px;
+}
+.tenant-name {
+font-size: clamp(20px, 2.8vw, 28px);
+font-weight: 800;
+color: #fff;
+line-height: 1.1;
+margin-bottom: 4px;
+}
+.tenant-prop {
+font-size: 13px;
+color: rgba(255,255,255,0.45);
+font-weight: 600;
+}
+.tenant-meta__right {
+text-align: right;
+}
+.rent-amount {
+font-size: 32px;
+font-weight: 800;
+color: #fff;
+line-height: 1;
+margin-bottom: 3px;
+}
+.rent-due {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.35);
+}
+
+/* Progress tabs */
+.progress-tabs {
+display: flex;
+gap: 2px;
+margin-top: 0;
+}
+.progress-tab {
+flex: 1;
+padding: 10px 16px;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.30);
+border-bottom: 2px solid transparent;
+cursor: default;
+}
+.progress-tab.active {
+color: var(--salmon);
+border-bottom-color: var(--salmon);
+}
+.progress-tab.done {
+color: rgba(255,255,255,0.45);
+border-bottom-color: rgba(255,255,255,0.15);
+}
+
+/* ── BODY ────────────────────────────────────────────────────── */
+.body {
+max-width: 900px;
+margin: 0 auto;
+padding: 28px 40px 64px;
+display: grid;
+grid-template-columns: 1fr 300px;
+gap: 20px;
+align-items: start;
+}
+
+/* ── MAIN COLUMN ─────────────────────────────────────────────── */
+.main-col {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+/* Step blocks */
+.step-block {
+background: var(--white);
+border-radius: 5px;
+border: 1px solid rgba(11,44,61,0.09);
+overflow: hidden;
+}
+.step-block__head {
+padding: 16px 20px;
+display: flex;
+align-items: center;
+gap: 12px;
+border-bottom: 1px solid rgba(11,44,61,0.07);
+background: var(--panel);
+}
+.step-num {
+width: 24px;
+height: 24px;
+border-radius: 50%;
+background: var(--navy);
+color: #fff;
+font-size: 11px;
+font-weight: 800;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.step-num.done {
+background: #2a7a4b;
+}
+.step-title {
+font-size: 13px;
+font-weight: 800;
+color: var(--navy);
+text-transform: uppercase;
+letter-spacing: 0.10em;
+flex: 1;
+}
+.step-tag {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.10em;
+text-transform: uppercase;
+padding: 3px 10px;
+border-radius: 20px;
+}
+.step-tag.required { background: rgba(196,119,90,0.12); color: #8a4a2e; }
+.step-tag.optional { background: rgba(11,44,61,0.07); color: var(--mid); }
+.step-tag.complete { background: rgba(42,122,75,0.10); color: #1a5c32; }
+
+.step-block__body {
+padding: 20px 20px 22px;
+}
+
+/* Payment method selector */
+.method-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin-bottom: 20px;
+}
+.method {
+border: 1.5px solid rgba(11,44,61,0.12);
+border-radius: 5px;
+padding: 16px 16px 18px;
+cursor: pointer;
+transition: border-color .15s, background .15s;
+position: relative;
+}
+.method:hover { border-color: rgba(196,119,90,0.5); }
+.method.selected {
+border-color: var(--salmon);
+background: rgba(196,119,90,0.04);
+}
+.method.selected::after {
+content: '';
+position: absolute;
+top: 10px;
+right: 10px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: var(--salmon);
+}
+.method__label {
+font-size: 13px;
+font-weight: 800;
+color: var(--navy);
+margin-bottom: 3px;
+}
+.method__desc {
+font-size: 12px;
+color: var(--mid);
+line-height: 1.55;
+}
+.method__rec {
+display: inline-block;
+margin-top: 8px;
+font-size: 9px;
+font-weight: 800;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(--salmon);
+}
+.method input[type="radio"] { display: none; }
+
+/* CTA button */
+.cta-btn {
+display: block;
+width: 100%;
+text-align: center;
+background: var(--salmon);
+color: #fff;
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 12px;
+font-weight: 800;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+padding: 16px;
+border-radius: 4px;
+border: none;
+cursor: pointer;
+transition: background .2s, transform .15s;
+}
+.cta-btn:hover { background: #b36848; transform: translateY(-1px); }
+.cta-sub {
+font-size: 11px;
+color: var(--mid);
+text-align: center;
+margin-top: 10px;
+line-height: 1.6;
+}
+.cta-sub a { color: var(--salmon); font-weight: 700; }
+
+/* ── SIDEBAR ─────────────────────────────────────────────────── */
+.side-col {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.side-card {
+background: var(--white);
+border-radius: 5px;
+border: 1px solid rgba(11,44,61,0.09);
+overflow: hidden;
+}
+.side-card__head {
+padding: 12px 16px;
+background: var(--panel);
+border-bottom: 1px solid rgba(11,44,61,0.07);
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: var(--mid);
+}
+.side-card__body {
+padding: 16px;
+}
+
+/* Due date countdown */
+.due-display {
+text-align: center;
+padding: 8px 0 12px;
+}
+.due-display__date {
+font-size: 28px;
+font-weight: 800;
+color: var(--navy);
+line-height: 1;
+margin-bottom: 4px;
+}
+.due-display__label {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--mid);
+margin-bottom: 16px;
+}
+.due-display__bar {
+height: 4px;
+background: rgba(11,44,61,0.08);
+border-radius: 2px;
+overflow: hidden;
+margin-bottom: 8px;
+}
+.due-display__fill {
+height: 100%;
+background: var(--salmon);
+border-radius: 2px;
+width: 20%;
+}
+.due-display__note {
+font-size: 11px;
+color: var(--mid);
+text-align: center;
+line-height: 1.5;
+}
+
+/* Policy rows */
+.policy-rows {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+.policy-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 0;
+border-bottom: 1px solid rgba(11,44,61,0.06);
+font-size: 12px;
+}
+.policy-row:last-child { border-bottom: none; }
+.policy-row__key { color: var(--mid); font-weight: 600; }
+.policy-row__val { font-weight: 800; color: var(--navy); }
+
+/* Contact rows */
+.contact-row {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 0;
+border-bottom: 1px solid rgba(11,44,61,0.06);
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-row__avatar {
+width: 34px;
+height: 34px;
+border-radius: 50%;
+overflow: hidden;
+background: var(--cream);
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 11px;
+font-weight: 800;
+color: var(--navy);
+}
+.contact-row__avatar img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center top;
+}
+.contact-row__name {
+font-size: 12px;
+font-weight: 800;
+color: var(--navy);
+line-height: 1.2;
+}
+.contact-row__role {
+font-size: 11px;
+color: var(--mid);
+}
+.contact-row__num {
+margin-left: auto;
+font-size: 12px;
+font-weight: 700;
+color: var(--salmon);
+white-space: nowrap;
+}
+
+/* Security badge */
+.security {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 12px 14px;
+background: rgba(11,44,61,0.03);
+border: 1px solid rgba(11,44,61,0.07);
+border-radius: 4px;
+}
+.security__text {
+font-size: 11px;
+color: var(--mid);
+line-height: 1.5;
+}
+.security__text strong { color: var(--navy); }
+
+/* ── RESPONSIVE: 900px ───────────────────────────────────────── */
+@media (max-width: 900px) {
+.body { grid-template-columns: 1fr; padding: 20px 24px 52px; }
+.side-col { display: grid; grid-template-columns: 1fr 1fr; }
+}
+
+/* ── RESPONSIVE: 768px ───────────────────────────────────────── */
+@media (max-width: 768px) {
+.topbar { padding: 0 20px; }
+.tenant-header { padding: 24px 20px 0; }
+.tenant-meta { flex-direction: column; align-items: flex-start; gap: 16px; }
+.tenant-meta__right { text-align: left; }
+.body { padding: 16px 20px 48px; }
+.method-grid { grid-template-columns: 1fr; }
+.side-col { grid-template-columns: 1fr; }
+}
+
+/* ── RESPONSIVE: 480px ───────────────────────────────────────── */
+@media (max-width: 480px) {
+.topbar { padding: 0 14px; height: 46px; }
+.topbar__logo { height: 24px; }
+.tenant-header { padding: 20px 14px 0; }
+.body { padding: 14px 14px 40px; }
+.step-block__body { padding: 16px 14px 18px; }
+.side-card__body { padding: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+<div class="topbar__left">
+<img
+class="topbar__logo"
+src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/f893b497-0694-485f-8d2a-efccfe5349bd.png"
+alt="IRHIS"
+onerror="this.style.display='none'">
+<div class="topbar__divider"></div>
+<span class="topbar__label">Tenant Payment Portal</span>
+</div>
+<div class="topbar__status">
+<div class="topbar__dot pending"></div>
+Setup Pending
+</div>
+</div>
+
+<!-- TENANT HEADER -->
+<div class="tenant-header">
+<div class="tenant-header__inner">
+<div class="tenant-meta">
+<div class="tenant-meta__left">
+<p class="tenant-greeting">Hello,</p>
+<p class="tenant-name">[Tenant Name]</p>
+<p class="tenant-prop">[Property Address] · Toledo, OH</p>
+</div>
+<div class="tenant-meta__right">
+<p class="rent-amount">$[AMOUNT]</p>
+<p class="rent-due">Due 1st of each month</p>
+</div>
+</div>
+<div class="progress-tabs">
+<div class="progress-tab done">Account</div>
+<div class="progress-tab active">Payment Setup</div>
+<div class="progress-tab">Complete</div>
+</div>
+</div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+<!-- MAIN COLUMN -->
+<div class="main-col">
+
+<!-- STEP 1: Choose payment method -->
+<div class="step-block">
+<div class="step-block__head">
+<div class="step-num">1</div>
+<p class="step-title">Choose Your Payment Method</p>
+<span class="step-tag required">Required</span>
+</div>
+<div class="step-block__body">
+<div class="method-grid">
+<label class="method selected" id="m-autopay" onclick="selectMethod('m-autopay')">
+<input type="radio" name="method" value="autopay" checked>
+<p class="method__label">Autopay</p>
+<p class="method__desc">Charged automatically on the 1st. Receipt sent by email.</p>
+<span class="method__rec">★ Recommended</span>
+</label>
+<label class="method" id="m-manual" onclick="selectMethod('m-manual')">
+<input type="radio" name="method" value="manual">
+<p class="method__label">Pay Monthly</p>
+<p class="method__desc">Log in and pay yourself each month before the 1st.</p>
+</label>
+</div>
+<a href="[STRIPE_PAYMENT_LINK_PLACEHOLDER]" class="cta-btn" target="_blank" rel="noopener">Proceed to Payment Setup →</a>
+<p class="cta-sub">Secured by Stripe. Neela never sees your card details. Questions? <a href="tel:4199027728">Text Neela</a>.</p>
+</div>
+</div>
+
+<!-- STEP 2: Confirm -->
+<div class="step-block" style="opacity:0.5; pointer-events:none;">
+<div class="step-block__head">
+<div class="step-num">2</div>
+<p class="step-title">Confirm &amp; Activate</p>
+<span class="step-tag optional">After Step 1</span>
+</div>
+<div class="step-block__body">
+<p style="font-size:13px; color:var(--mid); line-height:1.65;">Once your payment method is added, you'll receive a confirmation email. Your first payment will process on the next 1st of the month.</p>
+</div>
+</div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="side-col">
+
+<!-- Due date info -->
+<div class="side-card">
+<div class="side-card__head">Payment Schedule</div>
+<div class="side-card__body">
+<div class="due-display">
+<p class="due-display__date">1st</p>
+<p class="due-display__label">Due Each Month</p>
+<div class="due-display__bar"><div class="due-display__fill"></div></div>
+<p class="due-display__note">5-day grace period · Late fees apply after the 6th</p>
+</div>
+<div class="policy-rows">
+<div class="policy-row">
+<span class="policy-row__key">Due Date</span>
+<span class="policy-row__val">1st of Month</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__key">Grace Period</span>
+<span class="policy-row__val">5 Days</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__key">Late Fee After</span>
+<span class="policy-row__val">6th of Month</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Contacts -->
+<div class="side-card">
+<div class="side-card__head">Contacts</div>
+<div class="side-card__body">
+<div class="contact-row">
+<div class="contact-row__avatar">
+<img
+src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/e2fded25-85b0-41a8-a566-350fcb79ad69.png"
+alt="Neela"
+onerror="this.style.display='none'; this.parentElement.textContent='NK'">
+</div>
+<div>
+<p class="contact-row__name">Neela Kelly</p>
+<p class="contact-row__role">Landlady</p>
+</div>
+<a href="tel:4199027728" class="contact-row__num">(419) 902-7728</a>
+</div>
+<div class="contact-row">
+<div class="contact-row__avatar">M</div>
+<div>
+<p class="contact-row__name">Maintenance</p>
+<p class="contact-row__role">Repairs &amp; requests</p>
+</div>
+<a href="tel:[MAINTENANCE_NUMBER]" class="contact-row__num">[PLACEHOLDER]</a>
+</div>
+</div>
+</div>
+
+<!-- Security -->
+<div class="side-card">
+<div class="side-card__body">
+<div class="security">
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" flex-shrink="0" style="flex-shrink:0;">
+<path d="M10 2L4 5V10C4 13.3 6.6 16.4 10 17C13.4 16.4 16 13.3 16 10V5L10 2Z" stroke="#0b2c3d" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="7.5,10 9.5,12 13,8" stroke="#0b2c3d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<p class="security__text"><strong>Secured by Stripe.</strong> Your payment info is encrypted end-to-end. IRHIS never stores card details.</p>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function selectMethod(id) {
+document.querySelectorAll('.method').forEach(function(el) {
+el.classList.remove('selected');
+});
+document.getElementById(id).classList.add('selected');
+}
+</script>
+
+</body>
 </html>
