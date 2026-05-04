@@ -1,10 +1,289 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>IRHIS Tenant Portal</title>
-  </head>
-  <body>
-    <h1>IRHIS Tenant Portal Dashboard Placeholder</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space">
+<title>Tenant Portal — I Rent Houses In Sweats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', Arial, sans-serif; font-size: 16px; color: #3a3a3a; background: #eceae6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+:root { --navy:#0b2c3d; --salmon:#C4775A; --cream:#E8EEED; --white:#ffffff; --mid:#6b7280; --panel:#f8f7f5; --green:#2a7a4b; --amber:#d97706; }
+
+/* ── TOPBAR ──────────────────────────────────────────── */
+.topbar { background:var(--navy); padding:0 40px; height:52px; display:flex; align-items:center; justify-content:space-between; }
+.topbar__left { display:flex; align-items:center; gap:10px; }
+.topbar__logo { height:28px; width:auto; }
+.topbar__divider { width:1px; height:18px; background:rgba(255,255,255,0.15); }
+.topbar__label { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45); }
+.topbar__right { display:flex; align-items:center; gap:16px; }
+.topbar__dot-wrap { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:rgba(255,255,255,0.45); }
+.topbar__dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
+
+/* ── TENANT HEADER ───────────────────────────────────── */
+.tenant-header { background:var(--navy); padding:28px 40px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.tenant-header__inner { max-width:1000px; margin:0 auto; }
+.tenant-meta { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:20px; }
+.tenant-greeting { font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
+.tenant-name { font-size:clamp(20px,2.8vw,28px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:4px; }
+.tenant-prop { font-size:13px; color:rgba(255,255,255,0.45); font-weight:600; }
+.tenant-rent { text-align:right; }
+.rent-amount { font-size:32px; font-weight:800; color:#fff; line-height:1; margin-bottom:3px; }
+.rent-label { font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+
+/* ── NAV ─────────────────────────────────────────────── */
+.portal-nav { display:flex; gap:2px; max-width:1000px; margin:0 auto; }
+.portal-nav a { display:flex; align-items:center; gap:7px; padding:12px 16px; font-size:11px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; color:rgba(255,255,255,0.38); border-bottom:2px solid transparent; transition:color .15s; white-space:nowrap; }
+.portal-nav a:hover { color:rgba(255,255,255,0.65); }
+.portal-nav a.active { color:var(--salmon); border-bottom-color:var(--salmon); }
+.portal-nav svg { flex-shrink:0; }
+
+/* ── BODY ────────────────────────────────────────────── */
+.body { max-width:1000px; margin:0 auto; padding:28px 40px 64px; }
+
+/* ── ALERT BANNER ────────────────────────────────────── */
+.alert { display:flex; align-items:center; gap:14px; background:rgba(217,119,6,0.10); border:1px solid rgba(217,119,6,0.25); border-radius:5px; padding:14px 18px; margin-bottom:24px; }
+.alert__icon { flex-shrink:0; }
+.alert__text { font-size:13px; font-weight:700; color:#92400e; line-height:1.5; }
+.alert__text span { font-weight:400; color:#a16207; }
+.alert.green { background:rgba(42,122,75,0.08); border-color:rgba(42,122,75,0.22); }
+.alert.green .alert__text { color:#14532d; }
+.alert.green .alert__text span { color:#166534; }
+
+/* ── STAT CARDS ──────────────────────────────────────── */
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px; }
+.stat-card { background:var(--white); border-radius:5px; border:1px solid rgba(11,44,61,0.09); padding:16px 18px; }
+.stat-card__label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); margin-bottom:6px; }
+.stat-card__val { font-size:22px; font-weight:800; color:var(--navy); line-height:1; }
+.stat-card__val.green { color:var(--green); }
+.stat-card__val.amber { color:var(--amber); }
+.stat-card__val.salmon { color:var(--salmon); }
+.stat-card__sub { font-size:11px; color:var(--mid); margin-top:4px; }
+
+/* ── TWO COL ─────────────────────────────────────────── */
+.two-col { display:grid; grid-template-columns:1fr 320px; gap:20px; align-items:start; }
+.main-col { display:flex; flex-direction:column; gap:16px; }
+.side-col { display:flex; flex-direction:column; gap:16px; }
+
+/* ── CARDS ───────────────────────────────────────────── */
+.card { background:var(--white); border-radius:5px; border:1px solid rgba(11,44,61,0.09); overflow:hidden; }
+.card__head { padding:14px 20px; background:var(--panel); border-bottom:1px solid rgba(11,44,61,0.07); display:flex; align-items:center; justify-content:space-between; }
+.card__title { font-size:12px; font-weight:800; color:var(--navy); text-transform:uppercase; letter-spacing:0.10em; }
+.card__link { font-size:12px; font-weight:700; color:var(--salmon); }
+.card__body { padding:20px; }
+
+/* ── QUICK ACTIONS ───────────────────────────────────── */
+.quick-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.qa { display:flex; align-items:center; gap:12px; padding:14px 16px; border:1.5px solid rgba(11,44,61,0.10); border-radius:5px; cursor:pointer; transition:border-color .15s, background .15s; }
+.qa:hover { border-color:var(--salmon); background:rgba(196,119,90,0.03); }
+.qa__icon { width:36px; height:36px; border-radius:6px; background:rgba(196,119,90,0.10); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.qa__label { font-size:13px; font-weight:800; color:var(--navy); margin-bottom:2px; }
+.qa__sub { font-size:11px; color:var(--mid); }
+
+/* ── PAYMENT STATUS ──────────────────────────────────── */
+.pay-status { display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid rgba(11,44,61,0.06); }
+.pay-status:last-child { border-bottom:none; padding-bottom:0; }
+.pay-status__label { font-size:13px; font-weight:700; color:var(--navy); }
+.pay-status__sub { font-size:11px; color:var(--mid); margin-top:2px; }
+.badge { display:inline-block; font-size:10px; font-weight:800; letter-spacing:0.10em; text-transform:uppercase; padding:3px 10px; border-radius:20px; }
+.badge.green { background:rgba(42,122,75,0.10); color:#14532d; }
+.badge.amber { background:rgba(217,119,6,0.10); color:#92400e; }
+.badge.navy { background:rgba(11,44,61,0.08); color:var(--navy); }
+
+/* ── CONTACT CARD ────────────────────────────────────── */
+.contact-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid rgba(11,44,61,0.06); }
+.contact-row:last-child { border-bottom:none; }
+.contact-avatar { width:36px; height:36px; border-radius:50%; overflow:hidden; background:var(--cream); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--navy); }
+.contact-avatar img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.contact-name { font-size:13px; font-weight:800; color:var(--navy); }
+.contact-role { font-size:11px; color:var(--mid); }
+.contact-num { margin-left:auto; font-size:12px; font-weight:700; color:var(--salmon); }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:900px){ .two-col{grid-template-columns:1fr;} .side-col{display:grid;grid-template-columns:1fr 1fr;} .stats-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:768px){ .topbar{padding:0 20px;} .tenant-header{padding:20px 20px 0;} .tenant-meta{flex-direction:column;align-items:flex-start;gap:12px;} .tenant-rent{text-align:left;} .body{padding:20px 20px 48px;} .portal-nav{overflow-x:auto;} .portal-nav a{padding:10px 12px;} .side-col{grid-template-columns:1fr;} }
+@media(max-width:480px){ .topbar{padding:0 14px;height:46px;} .topbar__logo{height:22px;} .tenant-header{padding:16px 14px 0;} .body{padding:16px 14px 40px;} .stats-grid{grid-template-columns:1fr 1fr;} .quick-actions{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<div class="topbar__left">
+<img class="topbar__logo" src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/f893b497-0694-485f-8d2a-efccfe5349bd.png" alt="IRHIS" onerror="this.style.display='none'">
+<div class="topbar__divider"></div>
+<span class="topbar__label">Tenant Portal</span>
+</div>
+<div class="topbar__right">
+<div class="topbar__dot-wrap"><div class="topbar__dot"></div>Active Tenant</div>
+</div>
+</div>
+
+<div class="tenant-header">
+<div class="tenant-header__inner">
+<div class="tenant-meta">
+<div>
+<p class="tenant-greeting">Welcome back,</p>
+<p class="tenant-name">[Tenant Name]</p>
+<p class="tenant-prop">[Property Address] · Toledo, OH</p>
+</div>
+<div class="tenant-rent">
+<p class="rent-amount">$[AMOUNT]</p>
+<p class="rent-label">Monthly Rent · Due 1st</p>
+</div>
+</div>
+<nav class="portal-nav">
+<a href="[DASHBOARD_URL]" class="active" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="7" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="7" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="7" y="7" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+Dashboard</a>
+<a href="[PAY_RENT_URL]" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="3" width="11" height="8" rx="1.2" stroke="currentColor" stroke-width="1.3"/><line x1="1" y1="5.5" x2="12" y2="5.5" stroke="currentColor" stroke-width="1.1"/><rect x="2.5" y="7.5" width="3" height="1.2" rx="0.6" fill="currentColor"/></svg>
+Pay Rent</a>
+<a href="[MAINTENANCE_URL]" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8.5 1.5C7.2 1.5 6.2 2.5 6.2 3.8L2 8 2 11 5 11 9.2 6.8C10.5 6.8 11.5 5.8 11.5 4.5 11.5 4.1 11.4 3.7 11.2 3.4L9.5 5.1 7.9 3.5 9.6 1.8C9.3 1.6 8.9 1.5 8.5 1.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="none"/></svg>
+Maintenance</a>
+<a href="[DOCUMENTS_URL]" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="1" width="9" height="11" rx="1.2" stroke="currentColor" stroke-width="1.3"/><line x1="4" y1="4.5" x2="9" y2="4.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="4" y1="6.5" x2="9" y2="6.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="4" y1="8.5" x2="7" y2="8.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+Documents</a>
+<a href="[HISTORY_URL]" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.3"/><polyline points="6.5,3.5 6.5,6.5 8.5,8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+History</a>
+<a href="[MESSAGE_URL]" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 2.5 Q1.5 1.5 2.5 1.5 H10.5 Q11.5 1.5 11.5 2.5 V8 Q11.5 9 10.5 9 H7 L4.5 11.5 V9 H2.5 Q1.5 9 1.5 8 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="none"/></svg>
+Message</a>
+<a href="[SETTINGS_URL]" target="_blank" rel="noopener">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 1.5V2.5M6.5 10.5V11.5M1.5 6.5H2.5M10.5 6.5H11.5M3 3L3.7 3.7M9.3 9.3L10 10M3 10L3.7 9.3M9.3 3.7L10 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+Settings</a>
+</nav>
+</div>
+</div>
+
+<div class="body">
+
+<div class="alert green">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0"><path d="M3 8L6.5 11.5L13 5" stroke="#14532d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<p class="alert__text">Rent is current. <span>Next payment of $[AMOUNT] due on [DATE].</span></p>
+</div>
+
+<div class="stats-grid">
+<div class="stat-card">
+<p class="stat-card__label">Rent Status</p>
+<p class="stat-card__val green">Current</p>
+<p class="stat-card__sub">Paid through [MONTH]</p>
+</div>
+<div class="stat-card">
+<p class="stat-card__label">Next Due</p>
+<p class="stat-card__val">[DATE]</p>
+<p class="stat-card__sub">1st of month</p>
+</div>
+<div class="stat-card">
+<p class="stat-card__label">Lease Ends</p>
+<p class="stat-card__val">[MM/YY]</p>
+<p class="stat-card__sub">[X] months remaining</p>
+</div>
+<div class="stat-card">
+<p class="stat-card__label">Open Requests</p>
+<p class="stat-card__val salmon">0</p>
+<p class="stat-card__sub">No active maintenance</p>
+</div>
+</div>
+
+<div class="two-col">
+<div class="main-col">
+
+<div class="card">
+<div class="card__head">
+<p class="card__title">Quick Actions</p>
+</div>
+<div class="card__body">
+<div class="quick-actions">
+<a href="[PAY_RENT_URL]" class="qa" target="_blank" rel="noopener">
+<div class="qa__icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1.5" stroke="#C4775A" stroke-width="1.5"/><line x1="2" y1="7.5" x2="16" y2="7.5" stroke="#C4775A" stroke-width="1.3"/><rect x="4.5" y="10" width="4" height="1.5" rx="0.75" fill="#C4775A"/></svg></div>
+<div><p class="qa__label">Pay Rent</p><p class="qa__sub">Stripe · Secure</p></div>
+</a>
+<a href="[MAINTENANCE_URL]" class="qa" target="_blank" rel="noopener">
+<div class="qa__icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 2C9 2 7.5 3.5 7.5 5.5L3 10 3 14 7 14 11.5 9.5C13.5 9.5 15 8 15 6 15 5.4 14.8 4.8 14.5 4.3L12.3 6.5 10.5 4.7 12.7 2.5C12.2 2.2 11.6 2 11 2Z" stroke="#C4775A" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg></div>
+<div><p class="qa__label">Request Repair</p><p class="qa__sub">Submit a maintenance request</p></div>
+</a>
+<a href="[MESSAGE_URL]" class="qa" target="_blank" rel="noopener">
+<div class="qa__icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4Q2 3 3 3H15Q16 3 16 4V11Q16 12 15 12H10L7 15V12H3Q2 12 2 11Z" stroke="#C4775A" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg></div>
+<div><p class="qa__label">Message Neela</p><p class="qa__sub">Direct message</p></div>
+</a>
+<a href="[DOCUMENTS_URL]" class="qa" target="_blank" rel="noopener">
+<div class="qa__icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="2" width="12" height="14" rx="1.5" stroke="#C4775A" stroke-width="1.5"/><line x1="6" y1="6" x2="12" y2="6" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="9" x2="12" y2="9" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round"/><line x1="6" y1="12" x2="9" y2="12" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+<div><p class="qa__label">View Documents</p><p class="qa__sub">Lease &amp; agreements</p></div>
+</a>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card__head">
+<p class="card__title">Payment Status</p>
+<a href="[HISTORY_URL]" class="card__link" target="_blank" rel="noopener">View history →</a>
+</div>
+<div class="card__body">
+<div class="pay-status">
+<div><p class="pay-status__label">Current Month</p><p class="pay-status__sub">[MONTH YEAR]</p></div>
+<span class="badge green">Paid</span>
+</div>
+<div class="pay-status">
+<div><p class="pay-status__label">Payment Method</p><p class="pay-status__sub">Autopay · Card ending [XXXX]</p></div>
+<span class="badge navy">Active</span>
+</div>
+<div class="pay-status">
+<div><p class="pay-status__label">Next Charge</p><p class="pay-status__sub">$[AMOUNT] on [DATE]</p></div>
+<span class="badge amber">Upcoming</span>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="side-col">
+
+<div class="card">
+<div class="card__head"><p class="card__title">Contacts</p></div>
+<div class="card__body">
+<div class="contact-row">
+<div class="contact-avatar"><img src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/e2fded25-85b0-41a8-a566-350fcb79ad69.png" alt="Neela" onerror="this.style.display='none';this.parentElement.textContent='NK'"></div>
+<div><p class="contact-name">Neela Kelly</p><p class="contact-role">Landlady · General</p></div>
+<a href="tel:4199027728" class="contact-num">(419) 902-7728</a>
+</div>
+<div class="contact-row">
+<div class="contact-avatar" style="font-size:11px;font-weight:800;color:var(--navy);">M</div>
+<div><p class="contact-name">Maintenance</p><p class="contact-role">Repairs &amp; requests</p></div>
+<a href="tel:[MAINTENANCE_NUMBER]" class="contact-num">[PLACEHOLDER]</a>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card__head"><p class="card__title">Lease Summary</p></div>
+<div class="card__body">
+<div class="pay-status"><div><p class="pay-status__label">Move-In</p></div><span style="font-size:13px;font-weight:800;color:var(--navy);">[DATE]</span></div>
+<div class="pay-status"><div><p class="pay-status__label">Lease End</p></div><span style="font-size:13px;font-weight:800;color:var(--navy);">[DATE]</span></div>
+<div class="pay-status"><div><p class="pay-status__label">Monthly Rent</p></div><span style="font-size:13px;font-weight:800;color:var(--salmon);">$[AMOUNT]</span></div>
+<div class="pay-status"><div><p class="pay-status__label">Grace Period</p></div><span style="font-size:13px;font-weight:800;color:var(--navy);">5 Days</span></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card__head"><p class="card__title">irenthousesinsweats.com</p></div>
+<div class="card__body" style="padding:16px;">
+<p style="font-size:12px;color:var(--mid);line-height:1.65;">Questions about your lease, property, or anything else — reach out to Neela directly.</p>
+<a href="tel:4199027728" style="display:block;margin-top:12px;text-align:center;background:var(--salmon);color:#fff;font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:12px;border-radius:4px;">(419) 902-7728</a>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+</body>
 </html>
