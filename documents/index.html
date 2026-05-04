@@ -1,10 +1,131 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Documents | IRHIS Tenant Portal</title>
-  </head>
-  <body>
-    <h1>Documents Placeholder</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space">
+<title>Documents — I Rent Houses In Sweats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito Sans', Arial, sans-serif; font-size: 16px; color: #3a3a3a; background: #eceae6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+:root { --navy:#0b2c3d; --salmon:#C4775A; --cream:#E8EEED; --white:#ffffff; --mid:#6b7280; --panel:#f8f7f5; --green:#2a7a4b; --amber:#d97706; }
+.topbar { background:var(--navy); padding:0 40px; height:52px; display:flex; align-items:center; justify-content:space-between; }
+.topbar__left { display:flex; align-items:center; gap:10px; }
+.topbar__logo { height:28px; width:auto; }
+.topbar__divider { width:1px; height:18px; background:rgba(255,255,255,0.15); }
+.topbar__label { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45); }
+.topbar__right { display:flex; align-items:center; gap:16px; }
+.topbar__dot-wrap { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:rgba(255,255,255,0.45); }
+.topbar__dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
+.tenant-header { background:var(--navy); padding:28px 40px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.tenant-header__inner { max-width:1000px; margin:0 auto; }
+.tenant-meta { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:20px; }
+.tenant-greeting { font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
+.tenant-name { font-size:clamp(20px,2.8vw,28px); font-weight:800; color:#fff; line-height:1.1; margin-bottom:4px; }
+.tenant-prop { font-size:13px; color:rgba(255,255,255,0.45); font-weight:600; }
+.tenant-rent { text-align:right; }
+.rent-amount { font-size:32px; font-weight:800; color:#fff; line-height:1; margin-bottom:3px; }
+.rent-label { font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+.portal-nav { display:flex; gap:2px; max-width:1000px; margin:0 auto; }
+.portal-nav a { display:flex; align-items:center; gap:7px; padding:12px 16px; font-size:11px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; color:rgba(255,255,255,0.38); border-bottom:2px solid transparent; transition:color .15s; white-space:nowrap; }
+.portal-nav a:hover { color:rgba(255,255,255,0.65); }
+.portal-nav a.active { color:var(--salmon); border-bottom-color:var(--salmon); }
+.body { max-width:1000px; margin:0 auto; padding:28px 40px 64px; display:flex; flex-direction:column; gap:16px; }
+.card { background:var(--white); border-radius:5px; border:1px solid rgba(11,44,61,0.09); overflow:hidden; }
+.card__head { padding:14px 20px; background:var(--panel); border-bottom:1px solid rgba(11,44,61,0.07); display:flex; align-items:center; justify-content:space-between; }
+.card__title { font-size:12px; font-weight:800; color:var(--navy); text-transform:uppercase; letter-spacing:0.10em; }
+.card__tag { font-size:10px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; padding:3px 10px; border-radius:20px; }
+.card__tag.green { background:rgba(42,122,75,0.10); color:#14532d; }
+.card__tag.amber { background:rgba(217,119,6,0.10); color:#92400e; }
+.card__body { padding:24px; }
+.row { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid rgba(11,44,61,0.06); font-size:13px; }
+.row:last-child { border-bottom:none; }
+.row__key { color:var(--mid); font-weight:600; }
+.row__val { font-weight:800; color:var(--navy); }
+.row__val.salmon { color:var(--salmon); }
+.row__val.green { color:var(--green); }
+.btn { display:block; width:100%; text-align:center; background:var(--salmon); color:#fff; font-family:"Nunito Sans",Arial,sans-serif; font-size:12px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; padding:16px; border-radius:4px; border:none; cursor:pointer; transition:background .2s; }
+.btn:hover { background:#b36848; }
+.btn.outline { background:transparent; color:var(--navy); border:1.5px solid rgba(11,44,61,0.20); }
+.btn.outline:hover { background:rgba(11,44,61,0.04); }
+.note { font-size:12px; color:var(--mid); text-align:center; margin-top:10px; line-height:1.6; }
+.note a { color:var(--salmon); font-weight:700; }
+.placeholder-box { background:var(--cream); border-radius:4px; padding:32px; text-align:center; }
+.placeholder-box__title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.placeholder-box__sub { font-size:13px; color:var(--mid); line-height:1.65; margin-bottom:20px; }
+.form-group { margin-bottom:18px; }
+.form-label { display:block; font-size:11px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); margin-bottom:7px; }
+.form-input { width:100%; padding:11px 14px; font-family:"Nunito Sans",Arial,sans-serif; font-size:14px; color:var(--navy); background:var(--white); border:1.5px solid rgba(11,44,61,0.15); border-radius:4px; outline:none; transition:border-color .15s; }
+.form-input:focus { border-color:var(--salmon); }
+.form-textarea { width:100%; padding:11px 14px; font-family:"Nunito Sans",Arial,sans-serif; font-size:14px; color:var(--navy); background:var(--white); border:1.5px solid rgba(11,44,61,0.15); border-radius:4px; outline:none; transition:border-color .15s; resize:vertical; min-height:120px; }
+.form-textarea:focus { border-color:var(--salmon); }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.hist-row { display:flex; align-items:center; gap:14px; padding:13px 0; border-bottom:1px solid rgba(11,44,61,0.06); }
+.hist-row:last-child { border-bottom:none; }
+.hist-dot { width:8px; height:8px; border-radius:50%; background:var(--green); flex-shrink:0; }
+.hist-date { font-size:12px; color:var(--mid); min-width:80px; }
+.hist-label { font-size:13px; font-weight:700; color:var(--navy); flex:1; }
+.hist-amount { font-size:13px; font-weight:800; color:var(--green); }
+@media(max-width:768px){ .topbar{padding:0 20px;} .tenant-header{padding:20px 20px 0;} .tenant-meta{flex-direction:column;align-items:flex-start;gap:12px;} .tenant-rent{text-align:left;} .body{padding:20px 20px 48px;} .portal-nav{overflow-x:auto;} .portal-nav a{padding:10px 12px;} .two-col{grid-template-columns:1fr;} }
+@media(max-width:480px){ .topbar{padding:0 14px;height:46px;} .topbar__logo{height:22px;} .tenant-header{padding:16px 14px 0;} .body{padding:16px 14px 40px;} }</style>
+</head>
+<body>
+<div class="topbar">
+<div class="topbar__left">
+<img class="topbar__logo" src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/f893b497-0694-485f-8d2a-efccfe5349bd.png" alt="IRHIS" onerror="this.style.display='none'">
+<div class="topbar__divider"></div>
+<span class="topbar__label">Tenant Portal</span>
+</div>
+<div class="topbar__right">
+<div class="topbar__dot-wrap"><div class="topbar__dot"></div>Active Tenant</div>
+</div>
+</div>
+<div class="tenant-header">
+<div class="tenant-header__inner">
+<div class="tenant-meta">
+<div>
+<p class="tenant-greeting">Welcome back,</p>
+<p class="tenant-name">[Tenant Name]</p>
+<p class="tenant-prop">[Property Address] · Toledo, OH</p>
+</div>
+<div class="tenant-rent">
+<p class="rent-amount">$[AMOUNT]</p>
+<p class="rent-label">Monthly Rent · Due 1st</p>
+</div>
+</div>
+<nav class="portal-nav"><a href="[DASHBOARD_URL]" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="7" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="7" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="7" y="7" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>Dashboard</a><a href="[PAY_RENT_URL]" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="3" width="11" height="8" rx="1.2" stroke="currentColor" stroke-width="1.3"/><line x1="1" y1="5.5" x2="12" y2="5.5" stroke="currentColor" stroke-width="1.1"/><rect x="2.5" y="7.5" width="3" height="1.2" rx="0.6" fill="currentColor"/></svg>Pay Rent</a><a href="[MAINTENANCE_URL]" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8.5 1.5C7.2 1.5 6.2 2.5 6.2 3.8L2 8 2 11 5 11 9.2 6.8C10.5 6.8 11.5 5.8 11.5 4.5 11.5 4.1 11.4 3.7 11.2 3.4L9.5 5.1 7.9 3.5 9.6 1.8C9.3 1.6 8.9 1.5 8.5 1.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="none"/></svg>Maintenance</a><a href="[DOCUMENTS_URL]" class="active" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="1" width="9" height="11" rx="1.2" stroke="currentColor" stroke-width="1.3"/><line x1="4" y1="4.5" x2="9" y2="4.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="4" y1="6.5" x2="9" y2="6.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="4" y1="8.5" x2="7" y2="8.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>Documents</a><a href="[HISTORY_URL]" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.3"/><polyline points="6.5,3.5 6.5,6.5 8.5,8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>History</a><a href="[MESSAGE_URL]" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 2.5 Q1.5 1.5 2.5 1.5 H10.5 Q11.5 1.5 11.5 2.5 V8 Q11.5 9 10.5 9 H7 L4.5 11.5 V9 H2.5 Q1.5 9 1.5 8 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="none"/></svg>Message</a><a href="[SETTINGS_URL]" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 1.5V2.5M6.5 10.5V11.5M1.5 6.5H2.5M10.5 6.5H11.5M3 3L3.7 3.7M9.3 9.3L10 10M3 10L3.7 9.3M9.3 3.7L10 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Settings</a></nav>
+</div>
+</div>
+<div class="body">
+<div class="card">
+<div class="card__head"><p class="card__title">Your Documents</p></div>
+<div class="card__body">
+<div class="hist-row">
+<div class="hist-dot" style="background:var(--navy);"></div>
+<div style="flex:1"><p style="font-size:13px;font-weight:700;color:var(--navy);">Lease Agreement</p><p style="font-size:11px;color:var(--mid);">Signed [DATE] · Expires [DATE]</p></div>
+<a href="[LEASE_DOC_URL]" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;color:var(--salmon);">View →</a>
+</div>
+<div class="hist-row">
+<div class="hist-dot" style="background:var(--navy);"></div>
+<div style="flex:1"><p style="font-size:13px;font-weight:700;color:var(--navy);">Move-In Inspection Report</p><p style="font-size:11px;color:var(--mid);">Completed [DATE]</p></div>
+<a href="[INSPECTION_DOC_URL]" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;color:var(--salmon);">View →</a>
+</div>
+<div class="hist-row">
+<div class="hist-dot" style="background:var(--navy);"></div>
+<div style="flex:1"><p style="font-size:13px;font-weight:700;color:var(--navy);">Pet Addendum</p><p style="font-size:11px;color:var(--mid);">If applicable · Signed [DATE]</p></div>
+<a href="[PET_DOC_URL]" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;color:var(--salmon);">View →</a>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card__head"><p class="card__title">Need a Document?</p></div>
+<div class="card__body">
+<p style="font-size:14px;color:var(--mid);line-height:1.75;margin-bottom:20px;">If you need a copy of any document not listed here, or need proof of tenancy for any purpose, reach out to Neela directly.</p>
+<a href="[MESSAGE_URL]" class="btn outline" target="_blank" rel="noopener">Message Neela →</a>
+</div>
+</div></div>
+
+</body>
 </html>
