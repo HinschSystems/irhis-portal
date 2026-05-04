@@ -1,10 +1,640 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Move-In | IRHIS Tenant Portal</title>
-  </head>
-  <body>
-    <h1>Move-In Placeholder</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space">
+<title>Welcome Home — I Rent Houses In Sweats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 16px;
+color: #3a3a3a;
+background: #f5f5f3;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+:root {
+--navy:   #0b2c3d;
+--salmon: #C4775A;
+--cream:  #E8EEED;
+--white:  #ffffff;
+--text:   #3a3a3a;
+--mid:    #6b7280;
+--bg:     #f5f5f3;
+}
+
+/* ── HERO BANNER ─────────────────────────────────────────────── */
+.hero {
+background: var(--navy);
+padding: 56px 48px 52px;
+}
+.hero__inner {
+max-width: 860px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr auto;
+gap: 48px;
+align-items: center;
+}
+.hero__eyebrow {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(--salmon);
+margin-bottom: 14px;
+}
+.hero__title {
+font-size: clamp(26px, 3.5vw, 38px);
+font-weight: 800;
+color: #fff;
+line-height: 1.1;
+margin-bottom: 12px;
+}
+.hero__sub {
+font-size: 15px;
+color: rgba(255,255,255,0.60);
+line-height: 1.7;
+max-width: 420px;
+}
+.hero__photo {
+width: 96px;
+height: 96px;
+border-radius: 50%;
+object-fit: cover;
+object-position: center top;
+border: 3px solid rgba(196,119,90,0.6);
+flex-shrink: 0;
+}
+
+/* ── MAIN LAYOUT ─────────────────────────────────────────────── */
+.main {
+max-width: 860px;
+margin: 0 auto;
+padding: 40px 48px 80px;
+display: flex;
+flex-direction: column;
+gap: 24px;
+}
+
+/* ── CARDS ───────────────────────────────────────────────────── */
+.card {
+background: var(--white);
+border-radius: 6px;
+border: 1px solid rgba(11,44,61,0.09);
+overflow: hidden;
+}
+.card__header {
+padding: 20px 28px 18px;
+border-bottom: 1px solid rgba(11,44,61,0.07);
+display: flex;
+align-items: center;
+gap: 14px;
+}
+.card__icon {
+width: 36px;
+height: 36px;
+border-radius: 6px;
+background: rgba(196,119,90,0.10);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.card__header-text {}
+.card__title {
+font-size: 14px;
+font-weight: 800;
+color: var(--navy);
+text-transform: uppercase;
+letter-spacing: 0.08em;
+line-height: 1;
+margin-bottom: 3px;
+}
+.card__subtitle {
+font-size: 12px;
+color: var(--mid);
+font-weight: 600;
+}
+.card__body {
+padding: 24px 28px 28px;
+}
+
+/* ── WELCOME CARD ────────────────────────────────────────────── */
+.welcome__text {
+font-size: 15px;
+color: var(--mid);
+line-height: 1.85;
+margin-bottom: 16px;
+}
+.welcome__text strong { color: var(--navy); font-weight: 700; }
+.welcome__sig {
+height: 40px;
+width: auto;
+opacity: 0.80;
+margin-top: 8px;
+}
+
+/* ── LEASE SUMMARY CARD ──────────────────────────────────────── */
+.lease-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1px;
+background: rgba(11,44,61,0.07);
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: 20px;
+}
+.lease-cell {
+background: #fff;
+padding: 16px 18px;
+}
+.lease-cell__label {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--mid);
+margin-bottom: 5px;
+}
+.lease-cell__val {
+font-size: 17px;
+font-weight: 800;
+color: var(--navy);
+line-height: 1.2;
+}
+.lease-cell__val.salmon { color: var(--salmon); }
+.late-fee-note {
+background: rgba(196,119,90,0.08);
+border: 1px solid rgba(196,119,90,0.22);
+border-radius: 4px;
+padding: 14px 16px;
+font-size: 13px;
+color: #7a4a35;
+line-height: 1.65;
+display: flex;
+gap: 10px;
+align-items: flex-start;
+}
+.late-fee-note svg { flex-shrink: 0; margin-top: 1px; }
+
+/* ── PAYMENT CARD ────────────────────────────────────────────── */
+.payment__intro {
+font-size: 14px;
+color: var(--mid);
+line-height: 1.75;
+margin-bottom: 24px;
+}
+.payment__options {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-bottom: 24px;
+}
+.payment__option {
+border: 1.5px solid rgba(11,44,61,0.12);
+border-radius: 5px;
+padding: 18px 20px;
+display: flex;
+align-items: flex-start;
+gap: 16px;
+cursor: pointer;
+transition: border-color .2s, background .2s;
+position: relative;
+}
+.payment__option:hover {
+border-color: var(--salmon);
+background: rgba(196,119,90,0.03);
+}
+.payment__option.selected {
+border-color: var(--salmon);
+background: rgba(196,119,90,0.05);
+}
+.payment__option input[type="radio"] {
+margin-top: 3px;
+accent-color: var(--salmon);
+flex-shrink: 0;
+width: 16px;
+height: 16px;
+}
+.payment__option-title {
+font-size: 14px;
+font-weight: 800;
+color: var(--navy);
+margin-bottom: 3px;
+}
+.payment__option-desc {
+font-size: 13px;
+color: var(--mid);
+line-height: 1.6;
+}
+.payment__badge {
+position: absolute;
+top: 14px;
+right: 16px;
+background: var(--salmon);
+color: #fff;
+font-size: 9px;
+font-weight: 800;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+padding: 3px 9px;
+border-radius: 20px;
+}
+.btn-pay {
+display: block;
+width: 100%;
+text-align: center;
+background: var(--salmon);
+color: #fff;
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 13px;
+font-weight: 800;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+padding: 18px;
+border-radius: 4px;
+border: none;
+cursor: pointer;
+transition: background .2s, transform .15s;
+}
+.btn-pay:hover { background: #b36848; transform: translateY(-1px); }
+.payment__note {
+font-size: 12px;
+color: var(--mid);
+text-align: center;
+margin-top: 12px;
+line-height: 1.6;
+}
+.payment__note a { color: var(--salmon); font-weight: 700; }
+
+/* ── PET POLICY CARD ─────────────────────────────────────────── */
+.policy-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.policy-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px 0;
+border-bottom: 1px solid rgba(11,44,61,0.06);
+font-size: 14px;
+}
+.policy-row:last-child { border-bottom: none; }
+.policy-row__label { color: var(--mid); font-weight: 600; }
+.policy-row__val { font-weight: 800; color: var(--navy); }
+.policy-note {
+margin-top: 16px;
+font-size: 13px;
+color: var(--mid);
+line-height: 1.7;
+background: var(--cream);
+border-radius: 4px;
+padding: 14px 16px;
+}
+
+/* ── CONTACTS CARD ───────────────────────────────────────────── */
+.contacts {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+.contact {
+display: grid;
+grid-template-columns: 48px 1fr auto;
+gap: 0 16px;
+align-items: center;
+padding: 16px 0;
+border-bottom: 1px solid rgba(11,44,61,0.06);
+}
+.contact:last-child { border-bottom: none; padding-bottom: 0; }
+.contact__avatar {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+overflow: hidden;
+background: var(--cream);
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.contact__avatar img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center top;
+}
+.contact__avatar-initials {
+font-size: 16px;
+font-weight: 800;
+color: var(--navy);
+}
+.contact__name {
+font-size: 14px;
+font-weight: 800;
+color: var(--navy);
+margin-bottom: 2px;
+}
+.contact__role {
+font-size: 12px;
+color: var(--mid);
+}
+.contact__links {
+display: flex;
+flex-direction: column;
+gap: 4px;
+align-items: flex-end;
+}
+.contact__link {
+font-size: 13px;
+font-weight: 700;
+color: var(--salmon);
+}
+
+/* ── FOOTER NOTE ─────────────────────────────────────────────── */
+.footer-note {
+text-align: center;
+font-size: 13px;
+color: var(--mid);
+line-height: 1.7;
+padding: 0 0 8px;
+}
+.footer-note strong { color: var(--navy); }
+
+/* ── RESPONSIVE: 768px ───────────────────────────────────────── */
+@media (max-width: 768px) {
+.hero { padding: 44px 24px 40px; }
+.hero__inner { grid-template-columns: 1fr; gap: 24px; }
+.hero__photo { width: 72px; height: 72px; }
+.main { padding: 28px 24px 60px; gap: 20px; }
+.card__header { padding: 16px 20px 14px; }
+.card__body { padding: 20px 20px 24px; }
+.lease-grid { grid-template-columns: 1fr 1fr; }
+.contact { grid-template-columns: 44px 1fr; gap: 0 12px; }
+.contact__links { display: none; }
+}
+
+/* ── RESPONSIVE: 480px ───────────────────────────────────────── */
+@media (max-width: 480px) {
+.hero { padding: 36px 16px 32px; }
+.main { padding: 20px 16px 52px; gap: 16px; }
+.card__header { padding: 14px 16px 12px; }
+.card__body { padding: 16px 16px 20px; }
+.lease-grid { grid-template-columns: 1fr; }
+.hero__photo { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero__inner">
+<div>
+<p class="hero__eyebrow">I Rent Houses In Sweats · Tenant Welcome</p>
+<h1 class="hero__title">Welcome Home.</h1>
+<p class="hero__sub">Everything you need to get settled — your lease details, how to pay rent, and how to reach Neela.</p>
+</div>
+<img
+class="hero__photo"
+src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/e2fded25-85b0-41a8-a566-350fcb79ad69.png"
+alt="Neela Kelly"
+onerror="this.style.display='none'">
+</div>
+</div>
+
+<div class="main">
+
+<!-- WELCOME MESSAGE -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<path d="M9 1L11.5 6.5H17L12.5 10L14.5 16L9 12.5L3.5 16L5.5 10L1 6.5H6.5L9 1Z" stroke="#C4775A" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
+</div>
+<div class="card__header-text">
+<p class="card__title">A Note From Neela</p>
+<p class="card__subtitle">Welcome message</p>
+</div>
+</div>
+<div class="card__body">
+<p class="welcome__text">Hey! I'm so glad to have you here. I put together this page so everything you need is in one place — no hunting through emails, no confusion about how to pay rent or who to call.</p>
+<p class="welcome__text"><strong>My goal is simple:</strong> to be a landlady you can actually reach, in a home you're genuinely happy to live in. If something comes up, don't hesitate — just text or call me directly.</p>
+<p class="welcome__text">Thanks for choosing to rent with IRHIS. Let's make this a great experience.</p>
+<img
+loading="lazy"
+class="welcome__sig"
+src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/69377e431da73cd937ae6b68.png"
+alt="Neela Kelly signature"
+onerror="this.style.display='none'">
+</div>
+</div>
+
+<!-- LEASE SUMMARY -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<rect x="3" y="2" width="12" height="14" rx="1.5" stroke="#C4775A" stroke-width="1.5"/>
+<line x1="6" y1="6" x2="12" y2="6" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="6" y1="9" x2="12" y2="9" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="6" y1="12" x2="9" y2="12" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round"/>
+</svg>
+</div>
+<div class="card__header-text">
+<p class="card__title">Your Lease Summary</p>
+<p class="card__subtitle">Key dates &amp; terms</p>
+</div>
+</div>
+<div class="card__body">
+<div class="lease-grid">
+<div class="lease-cell">
+<p class="lease-cell__label">Move-In Date</p>
+<p class="lease-cell__val">[MM/DD/YYYY]</p>
+</div>
+<div class="lease-cell">
+<p class="lease-cell__label">Lease End Date</p>
+<p class="lease-cell__val">[MM/DD/YYYY]</p>
+</div>
+<div class="lease-cell">
+<p class="lease-cell__label">Monthly Rent</p>
+<p class="lease-cell__val salmon">$[AMOUNT]</p>
+</div>
+<div class="lease-cell">
+<p class="lease-cell__label">Due Date</p>
+<p class="lease-cell__val">1st of Month</p>
+</div>
+<div class="lease-cell">
+<p class="lease-cell__label">Grace Period</p>
+<p class="lease-cell__val">5 Days</p>
+</div>
+<div class="lease-cell">
+<p class="lease-cell__label">Property</p>
+<p class="lease-cell__val" style="font-size:14px;">[ADDRESS]</p>
+</div>
+</div>
+<div class="late-fee-note">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+<circle cx="8" cy="8" r="6.5" stroke="#C4775A" stroke-width="1.3"/>
+<line x1="8" y1="5" x2="8" y2="8.5" stroke="#C4775A" stroke-width="1.4" stroke-linecap="round"/>
+<circle cx="8" cy="11" r="0.7" fill="#C4775A"/>
+</svg>
+<span><strong>Late fee policy:</strong> Rent received after the 5-day grace period (the 6th of the month) is subject to a late fee. Please reach out to Neela before the due date if you anticipate any issues.</span>
+</div>
+</div>
+</div>
+
+<!-- RENT PAYMENT -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<rect x="2" y="4" width="14" height="10" rx="1.5" stroke="#C4775A" stroke-width="1.5"/>
+<line x1="2" y1="7.5" x2="16" y2="7.5" stroke="#C4775A" stroke-width="1.3"/>
+<rect x="4.5" y="10" width="4" height="1.5" rx="0.75" fill="#C4775A"/>
+</svg>
+</div>
+<div class="card__header-text">
+<p class="card__title">Pay Rent Online</p>
+<p class="card__subtitle">Secure payment via Stripe</p>
+</div>
+</div>
+<div class="card__body">
+<p class="payment__intro">Rent is collected securely online through our payment portal. Choose how you'd like to pay each month:</p>
+<div class="payment__options">
+<label class="payment__option selected" id="opt-autopay">
+<input type="radio" name="paytype" value="autopay" checked onchange="selectOption('opt-autopay')">
+<div>
+<p class="payment__option-title">Autopay — Set It and Forget It</p>
+<p class="payment__option-desc">Your rent is automatically charged on the 1st of each month. Never miss a due date.</p>
+</div>
+<span class="payment__badge">Recommended</span>
+</label>
+<label class="payment__option" id="opt-manual">
+<input type="radio" name="paytype" value="manual" onchange="selectOption('opt-manual')">
+<div>
+<p class="payment__option-title">Manual — Pay Each Month</p>
+<p class="payment__option-desc">Log in and submit payment each month. You'll receive a reminder a few days before the 1st.</p>
+</div>
+</label>
+</div>
+<a href="[STRIPE_PAYMENT_LINK_PLACEHOLDER]" class="btn-pay" target="_blank" rel="noopener">Set Up Rent Payment →</a>
+<p class="payment__note">Powered by Stripe — your payment info is encrypted and secure.<br>Questions? <a href="tel:4199027728">Call or text Neela</a> before your first payment.</p>
+</div>
+</div>
+
+<!-- PET POLICY -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<ellipse cx="9" cy="11" rx="5" ry="4" stroke="#C4775A" stroke-width="1.5"/>
+<circle cx="5.5" cy="6" r="1.5" stroke="#C4775A" stroke-width="1.3"/>
+<circle cx="12.5" cy="6" r="1.5" stroke="#C4775A" stroke-width="1.3"/>
+<circle cx="9" cy="4.5" r="1.5" stroke="#C4775A" stroke-width="1.3"/>
+</svg>
+</div>
+<div class="card__header-text">
+<p class="card__title">Pet Policy</p>
+<p class="card__subtitle">If applicable to your lease</p>
+</div>
+</div>
+<div class="card__body">
+<div class="policy-list">
+<div class="policy-row">
+<span class="policy-row__label">Pet Rent</span>
+<span class="policy-row__val">$50 / month</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__label">Pet Deposit</span>
+<span class="policy-row__val">$250 (non-refundable)</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__label">Approval Required</span>
+<span class="policy-row__val">Yes — prior to move-in</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__label">Unauthorized Pets</span>
+<span class="policy-row__val">Lease violation</span>
+</div>
+</div>
+<div class="policy-note">If you have a pet that was approved, the $50/month pet rent is already included in your monthly total above. If you're considering adding a pet during your lease, you must contact Neela for approval before bringing the animal to the property.</div>
+</div>
+</div>
+
+<!-- KEY CONTACTS -->
+<div class="card">
+<div class="card__header">
+<div class="card__icon">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+<path d="M3 4.5C3 3.7 3.7 3 4.5 3H7L8.5 6.5L6.5 7.5C7.3 9.1 8.9 10.7 10.5 11.5L11.5 9.5L15 11V13.5C15 14.3 14.3 15 13.5 15C7.7 15 3 10.3 3 4.5Z" stroke="#C4775A" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>
+</div>
+<div class="card__header-text">
+<p class="card__title">Key Contacts</p>
+<p class="card__subtitle">Who to call and when</p>
+</div>
+</div>
+<div class="card__body">
+<div class="contacts">
+<div class="contact">
+<div class="contact__avatar">
+<img
+src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/e2fded25-85b0-41a8-a566-350fcb79ad69.png"
+alt="Neela Kelly"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'contact__avatar-initials\'>NK</span>'">
+</div>
+<div>
+<p class="contact__name">Neela Kelly</p>
+<p class="contact__role">Landlady — rent, lease, general questions</p>
+</div>
+<div class="contact__links">
+<a href="tel:4199027728" class="contact__link">(419) 902-7728</a>
+<a href="mailto:nkelly7x@gmail.com" class="contact__link">nkelly7x@gmail.com</a>
+</div>
+</div>
+<div class="contact">
+<div class="contact__avatar">
+<span class="contact__avatar-initials">M</span>
+</div>
+<div>
+<p class="contact__name">Maintenance</p>
+<p class="contact__role">Non-emergency repairs &amp; maintenance requests</p>
+</div>
+<div class="contact__links">
+<a href="tel:[MAINTENANCE_NUMBER]" class="contact__link">[PLACEHOLDER]</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FOOTER NOTE -->
+<p class="footer-note">Questions about this page or your lease? Text Neela directly at <strong>(419) 902-7728</strong>.<br>I Rent Houses In Sweats · Toledo, OH</p>
+
+</div><!-- /main -->
+
+<script>
+function selectOption(id) {
+document.querySelectorAll('.payment__option').forEach(function(el) {
+el.classList.remove('selected');
+});
+document.getElementById(id).classList.add('selected');
+}
+</script>
+
+
+</body>
 </html>
