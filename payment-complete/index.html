@@ -1,10 +1,370 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Payment Complete | IRHIS Tenant Portal</title>
-  </head>
-  <body>
-    <h1>Payment Complete Placeholder</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="dns-prefetch" href="https://assets.cdn.filesafe.space">
+<title>You're All Set — I Rent Houses In Sweats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Nunito Sans', Arial, sans-serif;
+font-size: 16px;
+color: #3a3a3a;
+background: #eceae6;
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+:root {
+--navy:   #0b2c3d;
+--salmon: #C4775A;
+--cream:  #E8EEED;
+--white:  #ffffff;
+--text:   #3a3a3a;
+--mid:    #6b7280;
+--panel:  #f8f7f5;
+--green:  #2a7a4b;
+}
+
+/* ── TOP BAR ─────────────────────────────────────────────────── */
+.topbar { background: var(--navy); padding: 0 40px; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+.topbar__left { display: flex; align-items: center; gap: 10px; }
+.topbar__logo { height: 28px; width: auto; }
+.topbar__divider { width: 1px; height: 18px; background: rgba(255,255,255,0.15); }
+.topbar__label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.topbar__status { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; }
+.topbar__dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+
+/* ── TENANT HEADER ───────────────────────────────────────────── */
+.tenant-header { background: var(--navy); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 28px 40px 0; }
+.tenant-header__inner { max-width: 900px; margin: 0 auto; }
+.tenant-meta { display: flex; align-items: flex-end; justify-content: space-between; padding-bottom: 24px; }
+.tenant-greeting { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+.tenant-name { font-size: clamp(20px, 2.8vw, 28px); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 4px; }
+.tenant-prop { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 600; }
+.tenant-meta__right { text-align: right; }
+.rent-amount { font-size: 32px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 3px; }
+.rent-due { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.progress-tabs { display: flex; gap: 2px; }
+.progress-tab { flex: 1; padding: 10px 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.30); border-bottom: 2px solid transparent; cursor: default; }
+.progress-tab.active { color: var(--salmon); border-bottom-color: var(--salmon); }
+.progress-tab.done { color: rgba(255,255,255,0.45); border-bottom-color: rgba(255,255,255,0.15); }
+
+/* ── BODY ─────────────────────────────────────────────────────── */
+.body { max-width: 900px; margin: 0 auto; padding: 28px 40px 64px; display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
+.main-col { display: flex; flex-direction: column; gap: 16px; }
+.side-col { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── SUCCESS BANNER ──────────────────────────────────────────── */
+.success-banner {
+background: var(--green);
+border-radius: 5px;
+padding: 28px 24px;
+display: flex;
+align-items: center;
+gap: 20px;
+}
+.success-banner__check {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: rgba(255,255,255,0.15);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.success-banner__title {
+font-size: 18px;
+font-weight: 800;
+color: #fff;
+margin-bottom: 4px;
+}
+.success-banner__sub {
+font-size: 13px;
+color: rgba(255,255,255,0.75);
+line-height: 1.5;
+}
+
+/* ── BLOCKS ──────────────────────────────────────────────────── */
+.block { background: var(--white); border-radius: 5px; border: 1px solid rgba(11,44,61,0.09); overflow: hidden; }
+.block__head { padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(11,44,61,0.07); background: var(--panel); }
+.block__icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(42,122,75,0.12); }
+.block__title { font-size: 13px; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: 0.10em; flex: 1; }
+.block__tag { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+.block__tag.confirmed { background: rgba(42,122,75,0.10); color: #1a5c32; }
+.block__body { padding: 20px 20px 24px; }
+
+/* Summary rows */
+.summary-rows { display: flex; flex-direction: column; }
+.summary-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(11,44,61,0.06); font-size: 13px; }
+.summary-row:last-child { border-bottom: none; }
+.summary-row__key { color: var(--mid); font-weight: 600; }
+.summary-row__val { font-weight: 800; color: var(--navy); }
+.summary-row__val.green { color: var(--green); }
+.summary-row__val.salmon { color: var(--salmon); }
+
+/* What happens next */
+.next-items { display: flex; flex-direction: column; gap: 0; }
+.next-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(11,44,61,0.06); align-items: flex-start; }
+.next-item:last-child { border-bottom: none; }
+.next-item__icon { width: 32px; height: 32px; border-radius: 6px; background: rgba(196,119,90,0.10); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.next-item__title { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 3px; }
+.next-item__body { font-size: 12px; color: var(--mid); line-height: 1.6; }
+
+/* Side card */
+.side-card { background: var(--white); border-radius: 5px; border: 1px solid rgba(11,44,61,0.09); overflow: hidden; }
+.side-card__head { padding: 12px 16px; background: var(--panel); border-bottom: 1px solid rgba(11,44,61,0.07); font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); }
+.side-card__body { padding: 16px; }
+
+/* Policy rows */
+.policy-rows { display: flex; flex-direction: column; }
+.policy-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(11,44,61,0.06); font-size: 12px; }
+.policy-row:last-child { border-bottom: none; }
+.policy-row__key { color: var(--mid); font-weight: 600; }
+.policy-row__val { font-weight: 800; color: var(--navy); }
+
+/* Contact rows */
+.contact-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(11,44,61,0.06); }
+.contact-row:last-child { border-bottom: none; }
+.contact-row__avatar { width: 34px; height: 34px; border-radius: 50%; overflow: hidden; background: var(--cream); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--navy); }
+.contact-row__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.contact-row__name { font-size: 12px; font-weight: 800; color: var(--navy); line-height: 1.2; }
+.contact-row__role { font-size: 11px; color: var(--mid); }
+.contact-row__num { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--salmon); white-space: nowrap; }
+
+/* Progress steps */
+.progress-steps { display: flex; flex-direction: column; gap: 0; }
+.ps { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(11,44,61,0.06); align-items: flex-start; }
+.ps:last-child { border-bottom: none; }
+.ps__num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #fff; flex-shrink: 0; margin-top: 1px; background: var(--green); }
+.ps__label { font-size: 12px; font-weight: 800; color: var(--navy); }
+.ps__sub { font-size: 11px; color: var(--mid); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 900px) { .body { grid-template-columns: 1fr; padding: 20px 24px 52px; } .side-col { display: grid; grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { .topbar { padding: 0 20px; } .tenant-header { padding: 24px 20px 0; } .tenant-meta { flex-direction: column; align-items: flex-start; gap: 16px; } .tenant-meta__right { text-align: left; } .body { padding: 16px 20px 48px; } .side-col { grid-template-columns: 1fr; } .success-banner { flex-direction: column; align-items: flex-start; gap: 14px; } }
+@media (max-width: 480px) { .topbar { padding: 0 14px; height: 46px; } .topbar__logo { height: 24px; } .tenant-header { padding: 20px 14px 0; } .body { padding: 14px 14px 40px; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<div class="topbar__left">
+<img class="topbar__logo" src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/f893b497-0694-485f-8d2a-efccfe5349bd.png" alt="IRHIS" onerror="this.style.display='none'">
+<div class="topbar__divider"></div>
+<span class="topbar__label">Tenant Payment Portal</span>
+</div>
+<div class="topbar__status">
+<div class="topbar__dot"></div>
+Setup Complete
+</div>
+</div>
+
+<div class="tenant-header">
+<div class="tenant-header__inner">
+<div class="tenant-meta">
+<div class="tenant-meta__left">
+<p class="tenant-greeting">Hello,</p>
+<p class="tenant-name">[Tenant Name]</p>
+<p class="tenant-prop">[Property Address] · Toledo, OH</p>
+</div>
+<div class="tenant-meta__right">
+<p class="rent-amount">$[AMOUNT]</p>
+<p class="rent-due">Due 1st of each month</p>
+</div>
+</div>
+<div class="progress-tabs">
+<div class="progress-tab done">Account</div>
+<div class="progress-tab done">Payment Setup</div>
+<div class="progress-tab active">Complete</div>
+</div>
+</div>
+</div>
+
+<div class="body">
+<div class="main-col">
+
+<!-- SUCCESS BANNER -->
+<div class="success-banner">
+<div class="success-banner__check">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M5 12L9.5 16.5L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<div>
+<p class="success-banner__title">You're all set, [Tenant Name].</p>
+<p class="success-banner__sub">Online rent payment is active. Your first payment will process on the 1st of next month.</p>
+</div>
+</div>
+
+<!-- PAYMENT SUMMARY -->
+<div class="block">
+<div class="block__head">
+<div class="block__icon">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5L5 9.5L11 3.5" stroke="#2a7a4b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="block__title">Payment Summary</p>
+<span class="block__tag confirmed">Active</span>
+</div>
+<div class="block__body">
+<div class="summary-rows">
+<div class="summary-row">
+<span class="summary-row__key">Payment Method</span>
+<span class="summary-row__val green">[Autopay / Manual — PLACEHOLDER]</span>
+</div>
+<div class="summary-row">
+<span class="summary-row__key">Monthly Amount</span>
+<span class="summary-row__val salmon">$[AMOUNT]</span>
+</div>
+<div class="summary-row">
+<span class="summary-row__key">First Payment Date</span>
+<span class="summary-row__val">[Next 1st of Month]</span>
+</div>
+<div class="summary-row">
+<span class="summary-row__key">Confirmation Email Sent To</span>
+<span class="summary-row__val">[tenant@email.com]</span>
+</div>
+<div class="summary-row">
+<span class="summary-row__key">Processed By</span>
+<span class="summary-row__val">Stripe (Secure)</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- WHAT HAPPENS NEXT -->
+<div class="block">
+<div class="block__head">
+<div class="block__icon">
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5L5 9.5L11 3.5" stroke="#2a7a4b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="block__title">What Happens Next</p>
+</div>
+<div class="block__body">
+<div class="next-items">
+<div class="next-item">
+<div class="next-item__icon">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="#C4775A" stroke-width="1.4"/><line x1="2" y1="6.5" x2="14" y2="6.5" stroke="#C4775A" stroke-width="1.2"/><rect x="3.5" y="8.5" width="3.5" height="1.2" rx="0.6" fill="#C4775A"/></svg>
+</div>
+<div>
+<p class="next-item__title">First charge on the 1st</p>
+<p class="next-item__body">$[AMOUNT] will be charged automatically on the 1st of next month. You'll receive a receipt by email every time a payment processes.</p>
+</div>
+</div>
+<div class="next-item">
+<div class="next-item__icon">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3.5C3 2.9 3.6 2.5 4.2 2.5H6L7.2 5.2L5.6 6C6.3 7.3 7.7 8.7 9 9.4L9.8 7.8L12.5 9V11.8C12.5 12.4 11.9 12.8 11.3 12.8C6.7 12.8 3 9.1 3 4.5" stroke="#C4775A" stroke-width="1.4" stroke-linejoin="round"/></svg>
+</div>
+<div>
+<p class="next-item__title">Reach out any time</p>
+<p class="next-item__body">Questions about a payment, need to update your method, or anything else — text Neela directly at (419) 902-7728.</p>
+</div>
+</div>
+<div class="next-item">
+<div class="next-item__icon">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L2.5 4V8C2.5 11 4.9 13.7 8 14.5C11.1 13.7 13.5 11 13.5 8V4L8 1.5Z" stroke="#C4775A" stroke-width="1.4" stroke-linejoin="round"/><polyline points="5.5,8 7,9.5 10.5,6" stroke="#C4775A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<div>
+<p class="next-item__title">Your payment info is safe</p>
+<p class="next-item__body">All payment data is encrypted by Stripe. Neela never has access to your card or bank details.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="side-col">
+
+<div class="side-card">
+<div class="side-card__head">All Steps Complete</div>
+<div class="side-card__body">
+<div class="progress-steps">
+<div class="ps">
+<div class="ps__num">✓</div>
+<div>
+<p class="ps__label">Account</p>
+<p class="ps__sub">Info confirmed</p>
+</div>
+</div>
+<div class="ps">
+<div class="ps__num">✓</div>
+<div>
+<p class="ps__label">Payment Setup</p>
+<p class="ps__sub">Stripe connected</p>
+</div>
+</div>
+<div class="ps">
+<div class="ps__num">✓</div>
+<div>
+<p class="ps__label">Complete</p>
+<p class="ps__sub">You're all set</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="side-card">
+<div class="side-card__head">Payment Schedule</div>
+<div class="side-card__body">
+<div class="policy-rows">
+<div class="policy-row">
+<span class="policy-row__key">Due Date</span>
+<span class="policy-row__val">1st of Month</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__key">Grace Period</span>
+<span class="policy-row__val">5 Days</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__key">Late Fee After</span>
+<span class="policy-row__val">6th of Month</span>
+</div>
+<div class="policy-row">
+<span class="policy-row__key">Receipt By</span>
+<span class="policy-row__val">Email</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="side-card">
+<div class="side-card__head">Contacts</div>
+<div class="side-card__body">
+<div class="contact-row">
+<div class="contact-row__avatar">
+<img src="https://assets.cdn.filesafe.space/Ju2En80bdsSebpKgHpJT/media/e2fded25-85b0-41a8-a566-350fcb79ad69.png" alt="Neela" onerror="this.style.display='none'; this.parentElement.textContent='NK'">
+</div>
+<div>
+<p class="contact-row__name">Neela Kelly</p>
+<p class="contact-row__role">Landlady</p>
+</div>
+<a href="tel:4199027728" class="contact-row__num">(419) 902-7728</a>
+</div>
+<div class="contact-row">
+<div class="contact-row__avatar">M</div>
+<div>
+<p class="contact-row__name">Maintenance</p>
+<p class="contact-row__role">Repairs &amp; requests</p>
+</div>
+<a href="tel:[MAINTENANCE_NUMBER]" class="contact-row__num">[PLACEHOLDER]</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+</body>
 </html>
