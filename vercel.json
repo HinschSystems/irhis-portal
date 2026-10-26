@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/signup",
+      "destination": "https://irenthousesinsweats.com/signup",
+      "permanent": false
+    }
+  ]
+}
